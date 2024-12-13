@@ -1,24 +1,66 @@
 {
   "app-id": "io.github.zaps166.QMPlay2",
   "runtime": "org.kde.Platform",
-  "runtime-version": "5.15-23.08",
+  "runtime-version": "6.8",
   "sdk": "org.kde.Sdk",
+  "add-extensions": {
+      "org.freedesktop.Platform.ffmpeg-full": {
+          "directory": "lib/ffmpeg",
+          "version": "24.08",
+          "add-ld-path": ".",
+          "autodelete": false
+      }
+  },
   "command": "QMPlay2",
   "rename-icon": "QMPlay2",
   "rename-desktop-file": "QMPlay2.desktop",
   "rename-appdata-file": "QMPlay2.appdata.xml",
   "finish-args": [
+    "--device=all",
     "--share=ipc",
     "--share=network",
-    "--socket=wayland",
-    "--socket=fallback-x11",
     "--socket=pulseaudio",
+    "--socket=fallback-x11",
+    "--socket=wayland",
     "--filesystem=home",
-    "--filesystem=/run/media",
+    "--filesystem=xdg-music:ro",
+    "--filesystem=xdg-videos:ro",
+    "--filesystem=xdg-run/pipewire-0:ro",
     "--filesystem=/media",
-    "--persist=.qmplay2",
-    "--device=dri",
-    "--system-talk-name=org.freedesktop.UDisks2"
+    "--filesystem=/mnt",
+    "--filesystem=/run/media",
+    "--system-talk-name=org.freedesktop.UDisks2",
+    "--system-talk-name=org.freedesktop.login1",
+    "--system-talk-name=org.freedesktop.ConsoleKit",
+    "--talk-name=org.freedesktop.ScreenSaver",
+    "--talk-name=org.freedesktop.Notifications",
+    "--own-name=org.mpris.MediaPlayer2.QMPlay2",
+    "--own-name=org.mpris.MediaPlayer2.QMPlay2.*"
+  ],
+  "cleanup": [
+    "/bin/cd*",
+    "/bin/rubberband*",
+    "/bin/mmc*",
+    "/bin/iso*",
+    "/include",
+    "/lib/pkgconfig",
+    "/lib/ladspa",
+    "/lib/libcdio++*",
+    "/lib/libiso9660*",
+    "/lib/libudf*",
+    "/lib/libstilview*",
+    "/man",
+    "/share/info",
+    "/share/ladspa",
+    "/share/doc",
+    "/share/gtk-doc",
+    "/share/man",
+    "/share/pkgconfig",
+    "*.la",
+    "*.a"
+  ],
+  "cleanup-commands": [
+      "mkdir -p /app/lib/ffmpeg"
   ],
   "modules": [
    {
@@ -31,46 +73,35 @@
       "sources": [
         {
           "type": "git",
-          "url": "https://github.com/libass/libass/",
-          "tag": "0.17.0",
-          "commit": "bef4b43ef1882b77f789f611d9cd24271ccdd65b"
-        },
-        {
-          "type": "script",
-          "commands": [
-            "autoreconf -fiv"
-          ],
-          "dest-filename": "autogen.sh"
-        }
-      ]
-    },
-    {
-      "name": "libva",
-      "buildsystem": "meson",
-      "sources": [
-        {
-          "type": "git",
-          "url": "https://github.com/intel/libva/",
-          "tag": "2.16.0",
-          "commit": "1333034d7ec6e4f8bcb340d8f7b81b8d32835c49"
+          "url": "https://github.com/libass/libass.git",
+          "tag": "0.17.3",
+          "commit": "e46aedea0a0d17da4c4ef49d84b94a7994664ab5"
         }
       ]
     },
     {
       "name": "gme",
       "buildsystem": "cmake-ninja",
+      "config-opts": [
+        "-DCMAKE_INSTALL_LIBDIR=lib"
+      ],
       "sources": [
         {
           "type": "git",
-          "url": "https://bitbucket.org/mpyne/game-music-emu",
-          "tag": "0.6.3",
-          "commit": "e76bdc0cb916e79aa540290e6edd0c445879d3ba"
+          "url": "https://github.com/libgme/game-music-emu.git",
+          "commit": "cb2c1ccc7563ed58321cc3b6b8507b9015192b80"
         }
       ]
     },
     {
       "name": "cddb",
       "buildsystem": "autotools",
+      "build-options": {
+        "cflags": "-Wno-incompatible-pointer-types"
+      },
+      "config-opts": [
+        "--disable-static"
+      ],
       "sources": [
         {
           "type": "archive",
@@ -122,37 +153,42 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/libsidplayfp/libsidplayfp/releases/download/v2.4.1/libsidplayfp-2.4.1.tar.gz",
-          "sha256": "ff583bb664ad642e732741fddf15ca44e156476b9c5e7c3550d7967611d878e3"
+          "url": "https://github.com/libsidplayfp/libsidplayfp/releases/download/v2.11.0/libsidplayfp-2.11.0.tar.gz",
+          "sha256": "46af5bdc36649dca8cda8631428c91946ba131824ca3b3eca37dc67e2530bc5c"
         }
       ]
     },
     {
       "name": "rubberband",
       "buildsystem": "meson",
+      "config-opts": [
+        "--libdir=lib"
+      ],
       "sources": [
         {
           "type": "git",
-          "url": "https://github.com/breakfastquay/rubberband/",
-          "tag": "v3.1.2",
-          "sha256": "fa8a918d8a613540381e571a6aba4a323174dce6"
+          "url": "https://github.com/breakfastquay/rubberband.git",
+          "tag": "v4.0.0",
+          "sha256": "2be46b0dffb13273a67396c77bc9278736bb03d2"
         }
       ]
     },
     {
       "name": "qmplay2",
       "buildsystem": "cmake-ninja",
-      "config-opts": [
-        "-DUSE_LINK_TIME_OPTIMIZATION=ON"
-      ],
       "post-install": [
-        "sed -i 's/version=\"22.10.23\"/version=\"22.10.23\" date=\"2022-10-23\"/g' /app/share/metainfo/QMPlay2.appdata.xml"
+        "mv /app/share/applications/QMPlay2_enqueue.desktop /app/share/applications/io.github.zaps166.QMPlay2.enqueue.desktop",
+        "sed -i 's,^Icon=QMPlay2$,Icon=io.github.zaps166.QMPlay2,g' /app/share/applications/io.github.zaps166.QMPlay2.enqueue.desktop"
+      ],
+      "config-opts": [
+        "-DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON",
+        "-DCMAKE_INSTALL_LIBDIR=lib"
       ],
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/zaps166/QMPlay2/releases/download/22.10.23/QMPlay2-src-22.10.23.tar.xz",
-          "sha256": "31e53121e517b45d4317a298df9aed447f880383bea96ae28bfcec0b3a19483f"
+          "url": "https://github.com/zaps166/QMPlay2/releases/download/24.12.06/QMPlay2-src-24.12.06.tar.xz",
+          "sha256": "dc59d9b87f3af6753195be1793a2e10aebf3ad59d20e2e43a5c21e10a46c7cec"
         }
       ]
     }
