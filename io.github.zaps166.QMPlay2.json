@@ -1,7 +1,7 @@
 {
   "app-id": "io.github.zaps166.QMPlay2",
   "runtime": "org.kde.Platform",
-  "runtime-version": "6.9",
+  "runtime-version": "6.8",
   "sdk": "org.kde.Sdk",
   "add-extensions": {
       "org.freedesktop.Platform.ffmpeg-full": {
@@ -74,8 +74,8 @@
         {
           "type": "git",
           "url": "https://github.com/libass/libass.git",
-          "tag": "0.17.3",
-          "commit": "e46aedea0a0d17da4c4ef49d84b94a7994664ab5"
+          "tag": "0.17.4",
+          "commit": "bbb3c7f1570a4a021e52683f3fbdf74fe492ae84"
         }
       ]
     },
@@ -153,8 +153,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/libsidplayfp/libsidplayfp/releases/download/v2.14.0/libsidplayfp-2.14.0.tar.gz",
-          "sha256": "0f49c87c3a4791b9709d502e605274ee5c4c20eabfdea0340917d27cbd685f53"
+          "url": "https://github.com/libsidplayfp/libsidplayfp/releases/download/v2.15.0/libsidplayfp-2.15.0.tar.gz",
+          "sha256": "42c28b9ef57998ad66bbbb3dfab00c6684715c643d9ccc9ac8da4d7cf296dd00"
         }
       ]
     },
@@ -186,8 +186,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/zaps166/QMPlay2/releases/download/25.06.27/QMPlay2-src-25.06.27.tar.xz",
-          "sha256": "285bbf1ed08bc65459b2eb9fadfe03f21be696c7818d4777c43579d45834bd6e"
+          "url": "https://github.com/zaps166/QMPlay2/releases/download/25.09.03/QMPlay2-src-25.09.03.tar.xz",
+          "sha256": "94f4df855fd8ec6b3c00550d7c86c10d71e97db5c69fd4b98148c88f21ebf1a6"
         }
       ]
     }
