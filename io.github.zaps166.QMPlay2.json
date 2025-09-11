@@ -186,8 +186,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/zaps166/QMPlay2/releases/download/25.09.03/QMPlay2-src-25.09.03.tar.xz",
-          "sha256": "94f4df855fd8ec6b3c00550d7c86c10d71e97db5c69fd4b98148c88f21ebf1a6"
+          "url": "https://github.com/zaps166/QMPlay2/releases/download/25.09.11/QMPlay2-src-25.09.11.tar.xz",
+          "sha256": "2821194dc09630b3238d4a95665501b5fa4578d8e76626c92f184dfd0025e782"
         }
       ]
     }
