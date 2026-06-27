@@ -66,8 +66,8 @@
         {
           "type": "git",
           "url": "https://github.com/libass/libass.git",
-          "tag": "0.17.4",
-          "commit": "bbb3c7f1570a4a021e52683f3fbdf74fe492ae84"
+          "tag": "0.17.5",
+          "commit": "4a05d8127f525943ebf45fdc6497c9e665947f0d"
         }
       ]
     },
@@ -81,7 +81,8 @@
         {
           "type": "git",
           "url": "https://github.com/libgme/game-music-emu.git",
-          "commit": "f0d9517c5c3e0b712f553baa62e213336587d52e"
+          "tag": "0.6.5",
+          "commit": "9e23d10f9fd2a6a2f33b10912dd8dc7153258995"
         }
       ]
     },
@@ -145,8 +146,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/libsidplayfp/libsidplayfp/releases/download/v2.16.1/libsidplayfp-2.16.1.tar.gz",
-          "sha256": "ace0f73c2ef8645ab069ce1b298b10e31e36af7b5996109983b2b67ad60ff3ca"
+          "url": "https://github.com/libsidplayfp/libsidplayfp/releases/download/v3.0.1/libsidplayfp-3.0.1.tar.gz",
+          "sha256": "6b8ffedc2f631a4ca53258e60468eab3e6a2dc4e1369b2e59e3a5955f99a2143"
         }
       ]
     },
@@ -160,7 +161,33 @@
         {
           "type": "git",
           "url": "https://github.com/breakfastquay/rubberband.git",
-          "tag": "v4.0.0"
+          "tag": "v4.0.0",
+          "commit": "1d95888bec3ae0a17c0c4af791810d5a63f6bc35"
+        }
+      ]
+    },
+    {
+      "name": "libopenmpt",
+      "buildsystem": "autotools",
+      "config-opts": [
+        "--without-mpg123",
+        "--without-ogg",
+        "--without-vorbis",
+        "--without-vorbisfile",
+        "--without-portaudio",
+        "--without-portaudiocpp",
+        "--without-sndfile",
+        "--without-flac",
+        "--disable-tests",
+        "--disable-examples",
+        "--disable-openmpt123",
+        "--disable-doxygen-html"
+      ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-0.8.7+release.autotools.tar.gz",
+          "sha256": "275c29ef47be9992f62a35fcc96f7ca05c06d2fd05c9298b8dee9f743f75b089"
         }
       ]
     },
@@ -178,8 +205,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/zaps166/QMPlay2/releases/download/25.09.11/QMPlay2-src-25.09.11.tar.xz",
-          "sha256": "2821194dc09630b3238d4a95665501b5fa4578d8e76626c92f184dfd0025e782"
+          "url": "https://github.com/zaps166/QMPlay2/releases/download/26.06.27/QMPlay2-src-26.06.27.tar.xz",
+          "sha256": "dd10afd4c203f564c8df3b85485826e20f04169d23b6768291a9c0e7c2b7dbcf"
         }
       ]
     }
